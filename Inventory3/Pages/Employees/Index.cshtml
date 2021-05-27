@@ -1,0 +1,130 @@
+﻿@page "{id:int?}"
+@model Inventory3.Pages.Employees.IndexModel
+
+@{
+    ViewData["Title"] = "Сотрудники";
+}
+
+<h3>Список сотрудников</h3>
+
+<p>
+    <a asp-page="Create">Создать нового</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Фамилия</th>
+            <th>Имя</th>
+            <th>Отчество</th>
+            <th>Кафедра</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.EmployeeData.Employees)
+        {
+            string selectedRow = "";
+            if (item.EmployeeID == Model.EmployeeID)
+            {
+                selectedRow = "table-success";
+            }
+
+            <tr class="@selectedRow">
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SecondName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Department.Title)
+                </td>
+                <td>
+                    <a asp-page="./Index" asp-route-id="@item.EmployeeID">Выбрать</a> |
+                    <a asp-page="./Edit" asp-route-id="@item.EmployeeID">Редактировать</a> |
+                    <a asp-page="./Details" asp-route-id="@item.EmployeeID">Подробнее</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.EmployeeID">Удалить</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@if (Model.EmployeeData.Locations != null)
+{
+    <h4>Список кабинетов</h4>
+    <table class="table">
+        <tr>
+            <th></th>
+            <th>Кабинет</th>
+        </tr>
+
+        @foreach (var item in Model.EmployeeData.Locations)
+        {
+            string selectedRow = "";
+            if (item.LocationID == Model.LocationID)
+            {
+                selectedRow = "table-success";
+            }
+            <tr class="@selectedRow">
+                <td>
+                    <a asp-page="./Index" asp-route-locationID="@item.LocationID">Выбрать</a>
+                </td>
+                <td>
+                    @item.Title
+                </td>
+            </tr>
+        }
+    </table>
+}
+@if (Model.EmployeeData.FixAssets != null)
+{
+    <h4>
+        Основные средства 
+    </h4>
+    <table class="table">
+        <tr>
+            <th>Категория</th>
+            <th>Название</th>
+            <th>Количество</th>
+            <th>Цена</th>
+            <th>Сумма</th>
+            <th>Инвентарный номер</th>
+            <th>Код справочника</th>
+            <th>Описание</th>
+        </tr>
+        @foreach (var item in Model.EmployeeData.FixAssets)
+        {
+
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category.Title)
+                </td>
+                <td>
+                    @item.Title
+                </td>
+                <td>
+                    @item.Quantity
+                </td>
+                <td>
+                    @item.Price
+                </td>
+                <td>
+                    @item.Summ
+                </td>
+                <td>
+                    @item.InvNumber
+                </td>
+                <td>
+                    @item.RefCode
+                </td>
+                <td>
+                    @item.Discription
+                </td>
+            </tr>
+        }
+    </table>
+}

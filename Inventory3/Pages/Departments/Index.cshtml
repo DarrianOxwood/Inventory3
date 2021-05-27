@@ -1,0 +1,36 @@
+﻿@page
+@model Inventory3.Pages.Departments.IndexModel
+
+@{
+    ViewData["Title"] = "Кафедры";
+}
+
+<h3>Кафедры</h3>
+
+<p>
+    <a asp-page="Create">Создать</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Department[0].Title)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Department) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.DepartmentID">Редактировать</a> |
+                <a asp-page="./Details" asp-route-id="@item.DepartmentID">Подробности</a> |
+                <a asp-page="./Delete" asp-route-id="@item.DepartmentID">Удалить</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

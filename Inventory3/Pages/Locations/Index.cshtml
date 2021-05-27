@@ -1,0 +1,93 @@
+﻿@page "{id:int?}"
+@model Inventory3.Pages.Locations.IndexModel
+
+@{
+    ViewData["Title"] = "Кабинеты";
+}
+
+<h3>Кабинеты</h3>
+
+<p>
+    <a asp-page="Create">Создать новый</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Кабинет</th>
+            <th>Сотрудник</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.EmployeeData.Locations)
+        {
+            string selectedRow = "";
+            if (item.LocationID == Model.LocationID)
+            {
+                selectedRow = "table-success";
+            }
+            <tr class="@selectedRow">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Employee.FullName)
+                </td>
+                <td>
+                    <a asp-page="./Index" asp-route-id="@item.LocationID">Выбрать</a> |
+                    <a asp-page="./Edit" asp-route-id="@item.LocationID">Редактировать</a> |
+                    <a asp-page="./Details" asp-route-id="@item.LocationID">Подробнее</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.LocationID">Удалить</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@if (Model.EmployeeData.FixAssets != null)
+{
+    <h4>
+        Основные средства
+    </h4>
+    <table class="table">
+        <tr>
+            <th>Категория</th>
+            <th>Название</th>
+            <th>Количество</th>
+            <th>Цена</th>
+            <th>Сумма</th>
+            <th>Инвентарный номер</th>
+            <th>Код справочника</th>
+            <th>Описание</th>
+        </tr>
+        @foreach (var item in Model.EmployeeData.FixAssets)
+        {
+
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category.Title)
+                </td>
+                <td>
+                    @item.Title
+                </td>
+                <td>
+                    @item.Quantity
+                </td>
+                <td>
+                    @item.Price
+                </td>
+                <td>
+                    @item.Summ
+                </td>
+                <td>
+                    @item.InvNumber
+                </td>
+                <td>
+                    @item.RefCode
+                </td>
+                <td>
+                    @item.Discription
+                </td>
+            </tr>
+        }
+    </table>
+}

@@ -1,0 +1,84 @@
+﻿@page
+@model Inventory3.Pages.FixAssets.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FixAssets[0].Category)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FixAssets[0].Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FixAssets[0].InvNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FixAssets[0].RefCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FixAssets[0].Quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FixAssets[0].Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FixAssets[0].Summ)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FixAssets[0].Discription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FixAssets[0].Location)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.FixAssets) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InvNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RefCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Summ)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Discription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Location.Title)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
