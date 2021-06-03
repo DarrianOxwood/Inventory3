@@ -1,15 +1,42 @@
-﻿@page
+﻿@page 
 @model Inventory3.Pages.FixAssets.IndexModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Основные средства";
 }
 
-<h1>Index</h1>
+<h1>Основные средства</h1>
 
 <p>
-    <a asp-page="Create">Create New</a>
+    <a asp-page="Create">Создать</a>
 </p>
+
+<form asp-page="./Index" method="get">
+    <div class="row">
+        <p>
+            <label class="col-form-label">Поиск по:</label>
+            <div class="col-md-3">
+                <select class="form-control" id="inlineFormCustomSelect" name="Filter" value="@Model.CurrentFilterType">
+                    <option>Всему</option>
+                    <option>Категории</option>
+                    <option>Названию</option>
+                    <option>Интентарному номеру</option>
+                    <option>Кабинету</option>
+                </select>
+            </div>
+            <div class="col-sm-3">
+                <input type="text" name="SearchString" class="form-control mx-sm-3" value="@Model.CurrentFilter" />
+            </div>
+            <div class="col-auto">
+                <input type="submit" value="Поиск" class="btn btn-primary " />
+            </div>
+            <div class="col-auto">
+                <a asp-page="./Index" class="alert-link nav-link">Полный список</a>
+            </div>
+    </div>
+    </p>
+</form>
+
 <table class="table">
     <thead>
         <tr>
@@ -35,50 +62,45 @@
                 @Html.DisplayNameFor(model => model.FixAssets[0].Summ)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FixAssets[0].Discription)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.FixAssets[0].Location)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.FixAssets) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Category.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.InvNumber)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RefCode)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Quantity)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Summ)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Discription)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Location.Title)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model.FixAssets)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InvNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RefCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Summ)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Location.Title)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.ID">Редакировать</a>
+                    <a asp-page="./Details" asp-route-id="@item.ID">Подробности</a>
+                    <a asp-page="./Delete" asp-route-id="@item.ID">Удалить</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
