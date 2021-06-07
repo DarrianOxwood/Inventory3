@@ -1,6 +1,10 @@
 ﻿@page
-@model Inventory3.Pages.FixAssets.DetailsModel
+@using QRCoder;
+@using System.Drawing.Imaging;
+@using System.IO;
+@using System.Drawing;
 
+@model Inventory3.Pages.FixAssets.DetailsModel
 @{
     ViewData["Title"] = "Подробности";
 }
@@ -11,6 +15,12 @@
     <h4>Основное средство</h4>
     <hr />
     <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.FixAsset.ID)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.FixAsset.ID)
+        </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.FixAsset.Title)
         </dt>
@@ -60,7 +70,32 @@
             @Html.DisplayFor(model => model.FixAsset.Location.Title)
         </dd>
     </dl>
+
 </div>
+
+
+@{
+    string txt = Convert.ToString(Model.FixAsset.ID);
+
+    byte[] imageByte;
+
+    QRCodeGenerator qRCodeGenerator = new QRCodeGenerator();
+    QRCodeData qRCodeData = qRCodeGenerator.CreateQrCode(txt, QRCodeGenerator.ECCLevel.Q);
+    QRCode qRCode = new QRCode(qRCodeData);
+    Bitmap qrCodeImage = qRCode.GetGraphic(20);
+
+    using (MemoryStream stream = new MemoryStream())
+    {
+        qrCodeImage.Save(stream, ImageFormat.Png);
+
+        imageByte = stream.ToArray();
+    }
+
+    var baseimage = Convert.ToBase64String(imageByte);
+}
+
+<img src="@String.Format("data:image/png;base64,{0}", baseimage)" width="150" height="150" />
+
 <div>
     <a asp-page="./Edit" asp-route-id="@Model.FixAsset.ID">Редактировать</a> |
     <a asp-page="./Index">Назад к списку</a>

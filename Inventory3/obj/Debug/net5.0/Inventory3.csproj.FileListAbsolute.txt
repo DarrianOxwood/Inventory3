@@ -170,3 +170,7 @@ D:\Учеба\Projects\Inventory3\Inventory3\obj\Debug\net5.0\Razor\Pages\FixAss
 D:\Учеба\Projects\Inventory3\Inventory3\obj\Debug\net5.0\Razor\Pages\FixAssets\Details.cshtml.g.cs
 D:\Учеба\Projects\Inventory3\Inventory3\obj\Debug\net5.0\Razor\Pages\FixAssets\Edit.cshtml.g.cs
 D:\Учеба\Projects\Inventory3\Inventory3\obj\Debug\net5.0\Razor\Pages\FixAssets\Index.cshtml.g.cs
+D:\Учеба\Projects\Inventory3\Inventory3\bin\Debug\net5.0\QRCoder.dll
+D:\Учеба\Projects\Inventory3\Inventory3\bin\Debug\net5.0\System.Drawing.Common.dll
+D:\Учеба\Projects\Inventory3\Inventory3\bin\Debug\net5.0\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
+D:\Учеба\Projects\Inventory3\Inventory3\bin\Debug\net5.0\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
