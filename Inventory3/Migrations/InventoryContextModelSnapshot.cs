@@ -101,7 +101,7 @@ namespace Inventory3.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("LocationID")
+                    b.Property<int?>("LocationID")
                         .HasColumnType("int");
 
                     b.Property<double>("Price")
@@ -137,6 +137,7 @@ namespace Inventory3.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Title")
+                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
@@ -169,8 +170,7 @@ namespace Inventory3.Migrations
                     b.HasOne("Inventory3.Models.Location", "Location")
                         .WithMany("FixAssets")
                         .HasForeignKey("LocationID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.Navigation("Category");
 
@@ -181,7 +181,8 @@ namespace Inventory3.Migrations
                 {
                     b.HasOne("Inventory3.Models.Employee", "Employee")
                         .WithMany("Locations")
-                        .HasForeignKey("EmployeeID");
+                        .HasForeignKey("EmployeeID")
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.Navigation("Employee");
                 });

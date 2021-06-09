@@ -82,7 +82,7 @@
     QRCodeGenerator qRCodeGenerator = new QRCodeGenerator();
     QRCodeData qRCodeData = qRCodeGenerator.CreateQrCode(txt, QRCodeGenerator.ECCLevel.Q);
     QRCode qRCode = new QRCode(qRCodeData);
-    Bitmap qrCodeImage = qRCode.GetGraphic(20);
+    Bitmap qrCodeImage = qRCode.GetGraphic(5);
 
     using (MemoryStream stream = new MemoryStream())
     {

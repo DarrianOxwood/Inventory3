@@ -20,9 +20,17 @@ namespace Inventory3.Data
         public DbSet<Category> Categorys { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Department>().ToTable("Department");
-            modelBuilder.Entity<Employee>().ToTable("Employee");
-            modelBuilder.Entity<Location>().ToTable("Location");
+            modelBuilder.Entity<Department>().ToTable("Department")
+                .HasMany(e => e.Employees);
+            modelBuilder.Entity<Employee>().ToTable("Employee")
+                .HasMany(e => e.Locations)
+                .WithOne(c => c.Employee)
+                .OnDelete(DeleteBehavior.SetNull)
+                ;
+            modelBuilder.Entity<Location>().ToTable("Location")
+                .HasMany(e => e.FixAssets)
+                .WithOne(c => c.Location)
+                .OnDelete(DeleteBehavior.SetNull);
             modelBuilder.Entity<FixAsset>().ToTable("FixAsset");
             modelBuilder.Entity<Category>().ToTable("Category");
         }
