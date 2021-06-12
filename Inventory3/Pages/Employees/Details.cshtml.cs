@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Inventory3.Data;
 using Inventory3.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Inventory3.Pages.Employees
 {
+    [Authorize]
     public class DetailsModel : PageModel
     {
         private readonly Inventory3.Data.InventoryContext _context;

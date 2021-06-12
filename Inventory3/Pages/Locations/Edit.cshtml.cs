@@ -8,9 +8,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Inventory3.Data;
 using Inventory3.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Inventory3.Pages.Locations
 {
+    [Authorize]
     public class EditModel : PageModel
     {
         private readonly Inventory3.Data.InventoryContext _context;

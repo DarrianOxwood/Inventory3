@@ -25,6 +25,12 @@ namespace Inventory3
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAuthentication("MyCookieAuth").AddCookie("MyCookieAuth", option =>
+            {
+                option.Cookie.Name = "MyCookieAuth";
+                option.LoginPath = "/Account/Login";
+            });
+
             services.AddRazorPages();
 
             services.AddDbContext<InventoryContext>(options =>
@@ -52,6 +58,7 @@ namespace Inventory3
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

@@ -12,10 +12,11 @@ using System.IO;
 using QRCoder;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Inventory3.Pages.FixAssets
 {
-
+    [Authorize]
     public class DetailsModel : PageModel
     {
 

@@ -3,7 +3,7 @@
     "mssql1": {
       "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourcegroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/inventory3dbserver/databases/Inventory3_db",
       "type": "mssql.azure",
-      "connectionId": "InventoryContext",
+      "connectionId": "ConnectionStrings:InventoryContext",
       "secretStore": "AzureAppSettings"
     }
   }
